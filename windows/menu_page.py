@@ -9,14 +9,16 @@ class MenuPage:
     on_add_con: typing.Any
     on_open_chat: typing.Any
     on_open_cambiar_estado: typing.Any
+    on_detalle_contacto: typing.Any
 
     def __init__(self, user, onclosewindown, on_refresh_contacts, on_delete_contact, on_add_contact_page,
-                 on_open_chat_page, on_open_cambiar_estado):
+                 on_open_chat_page, on_open_cambiar_estado, on_detalle_contacto):
         self.user = user
         self.on_del_con = on_delete_contact
         self.on_add_con = on_add_contact_page
         self.on_open_chat = on_open_chat_page
         self.on_open_cambiar_estado = on_open_cambiar_estado
+        self.on_detalle_contacto = on_detalle_contacto
 
         self.window = Tk()
         self.window.geometry('500x500')
@@ -45,8 +47,11 @@ class MenuPage:
         add_user_button = Button(frame_contacts, text="Agregar usuario", command=self.click_agregar_contacto)
         add_user_button.grid(column=3, row=0)
 
+        detalle_contacto_button = Button(frame_contacts, text="Ver detalle", command=self.click_detalle_contacto)
+        detalle_contacto_button.grid(column=4, row=0)
+
         change_state_button = Button(frame_contacts, text="Cambiar mi estado", command=self.click_cambiar_mi_estado)
-        change_state_button.grid(column=4, row=0)
+        change_state_button.grid(column=5, row=0)
 
     def show_window(self):
         self.window.mainloop()
@@ -80,3 +85,11 @@ class MenuPage:
 
     def click_cambiar_mi_estado(self):
         self.on_open_cambiar_estado()
+
+    def click_detalle_contacto(self):
+        curse_selection = self.contacts.curselection()
+        if not curse_selection.__str__() == "()":
+            contact = self.contacts.get(curse_selection)
+            self.on_detalle_contacto(contact)
+        else:
+            print("No contact selected")

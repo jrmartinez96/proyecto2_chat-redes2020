@@ -6,6 +6,7 @@ from windows.menu_page import MenuPage
 from windows.agregar_contacto_page import AgregarContactoPage
 from windows.cambiar_estado_page import CambiarEstadoPage
 from windows.go_offline_page import GoOflinePage
+from windows.detalle_contacto_page import DetalleContactoPage
 from classes.Contact import Contact
 
 
@@ -46,7 +47,8 @@ class User:
             on_delete_contact=self.on_delete_contact,
             on_add_contact_page=self.open_add_contact_page,
             on_open_chat_page=self.open_chat_window,
-            on_open_cambiar_estado=self.open_cambiar_estado
+            on_open_cambiar_estado=self.open_cambiar_estado,
+            on_detalle_contacto=self.on_detalle_contacto
         )
         self.xmpp.send_presence(pstatus="Conectado")
 
@@ -152,6 +154,15 @@ class User:
     def open_cambiar_estado(self):
         page = CambiarEstadoPage(on_change=self.on_cambiar_estado)
         page.run()
+
+    def on_detalle_contacto(self, contact):
+        end_index = contact.index("---")
+        contact_format = contact[0:end_index]
+
+        for contactt in self.contacts:
+            if (contactt.jid == contact_format):
+                page = DetalleContactoPage(contact=contactt)
+                page.run()
 
     # --------------------- ADD CONTACT PAGE FUNCTIONS ---------------------
     def on_add_contact(self, contact):
