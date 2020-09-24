@@ -78,4 +78,4 @@ class MenuPage:
         self.on_add_con()
 
     def click_cambiar_mi_estado(self):
-        print("Cambiar mi estado")
+        self.on_open_cambiar_estado()

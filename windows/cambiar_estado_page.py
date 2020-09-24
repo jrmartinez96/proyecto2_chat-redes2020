@@ -25,7 +25,7 @@ class CambiarEstadoPage:
         btn = Button(
             self.window,
             text="Cambiar estado",
-            command=self.change_state()
+            command=self.change_state
         )
         btn.grid(column=1, row=1)
         btn.place(relx=0.5, rely=0.6, anchor=CENTER)
@@ -34,4 +34,5 @@ class CambiarEstadoPage:
         self.window.mainloop()
 
     def change_state(self):
-        print(self.estado_entry.get())
+        estado = self.estado_entry.get()
+        self.on_change(estado)

@@ -44,7 +44,8 @@ class User:
             on_refresh_contacts=self.get_roster,
             on_delete_contact=self.on_delete_contact,
             on_add_contact_page=self.open_add_contact_page,
-            on_open_chat_page=self.open_chat_window
+            on_open_chat_page=self.open_chat_window,
+            on_open_cambiar_estado=self.open_cambiar_estado
         )
         self.xmpp.send_presence(pstatus="Conectado")
 
