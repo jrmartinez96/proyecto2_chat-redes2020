@@ -8,12 +8,14 @@ class MenuPage:
     on_del_con: typing.Any
     on_add_con: typing.Any
     on_open_chat: typing.Any
+    on_open_cambiar_estado: typing.Any
 
-    def __init__(self, user, onclosewindown, on_refresh_contacts, on_delete_contact, on_add_contact_page, on_open_chat_page):
+    def __init__(self, user, onclosewindown, on_refresh_contacts, on_delete_contact, on_add_contact_page, on_open_chat_page, on_open_cambiar_estado):
         self.user = user
         self.on_del_con = on_delete_contact
         self.on_add_con = on_add_contact_page
         self.on_open_chat = on_open_chat_page
+        self.on_open_cambiar_estado = on_open_cambiar_estado
 
         self.window = Tk()
         self.window.geometry('500x500')
@@ -41,6 +43,9 @@ class MenuPage:
 
         add_user_button = Button(frame_contacts, text="Agregar usuario", command=self.click_agregar_contacto)
         add_user_button.grid(column=3, row=0)
+
+        change_state_button = Button(frame_contacts, text="Cambiar mi estado", command=self.click_cambiar_mi_estado)
+        change_state_button.grid(column=4, row=0)
 
     def show_window(self):
         self.window.mainloop()
@@ -71,3 +76,6 @@ class MenuPage:
 
     def click_agregar_contacto(self):
         self.on_add_con()
+
+    def click_cambiar_mi_estado(self):
+        print("Cambiar mi estado")

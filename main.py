@@ -1,9 +1,11 @@
 import tkinter as tk
 import sleekxmpp
+import win10toast
+
 from windows.menu_page import MenuPage
 from windows.agregar_contacto_page import AgregarContactoPage
+from windows.cambiar_estado_page import CambiarEstadoPage
 from classes.Contact import Contact
-import win10toast
 
 
 # ------------------- VARIABLES -------------------
@@ -44,7 +46,7 @@ class User:
             on_add_contact_page=self.open_add_contact_page,
             on_open_chat_page=self.open_chat_window
         )
-        self.xmpp.send_presence(pstatus="holis")
+        self.xmpp.send_presence(pstatus="Conectado")
 
         self.menuPage.show_window()
 
@@ -141,6 +143,10 @@ class User:
             if (contactt.jid == contact_format):
                 contactt.open_chat(on_enviar_mensaje=self.on_enviar_mensaje)
 
+    def open_cambiar_estado(self):
+        page = CambiarEstadoPage(on_change=self.on_cambiar_estado)
+        page.run()
+
 
     # --------------------- ADD CONTACT PAGE FUNCTIONS ---------------------
     def on_add_contact(self, contact):
@@ -149,6 +155,10 @@ class User:
     # --------------------- CHAT PAGE FUNCTIONS ---------------------
     def on_enviar_mensaje(self, mensaje, contact):
         self.xmpp.send_message(mto=contact, mbody=mensaje, mtype="chat")
+
+    # --------------------- CAMBIAR ESTADO PAGE FUNCTIONS ---------------------
+    def on_cambiar_estado(self, estado):
+        self.xmpp.send_presence(pstatus=estado)
 
 
 # ------------------------------ LOGIN ------------------------------ #

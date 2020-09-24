@@ -10,7 +10,7 @@ class ChatPage:
     def definewindow(self, on_enviar_mensaje, contact_name, on_add_self_message):
         self.window = Tk()
         self.window.geometry('500x500')
-        self.window.title("Chat - Chat")
+        self.window.title("Chat - Chat " + contact_name)
 
         # Contacts
         label_chat = Label(self.window, text="Chat - " + contact_name)
