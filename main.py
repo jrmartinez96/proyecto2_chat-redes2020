@@ -61,13 +61,15 @@ class User:
             for contact in self.contacts:
                 if contact.jid in message["from"].__str__():
                     contact.add_message(message["body"])
-                    self.toaster.show_toast('Chat - Nuevo mensaje de ' + contact.jid, message["body"])
+                    self.toaster.show_toast('Chat - Nuevo mensaje de ' + contact.jid, message["body"], threaded=True)
 
     def handleIncomingPresence(self, presence):
         print(presence)
         if presence["type"] == "subscribe":
+            self.toaster.show_toast('Chat - Nuevo contacto agregado', presence["from"].__str__() + " te ha agregado.", threaded=True)
             self.xmpp.send_presence(pto=presence["from"], pfrom=presence["to"], ptype="subscribed")
         elif presence["type"] == "unsubscribe":
+            self.toaster.show_toast('Chat - Se ha eliminado un contacto', presence["from"].__str__() + " se ha eliminado.", threaded=True)
             self.xmpp.send_presence(pto=presence["from"], pfrom=presence["to"], ptype="unsubscribed")
         elif presence["type"] == "unavailable":
             for contact in self.contacts:
@@ -75,6 +77,8 @@ class User:
                 end_index_from = contact_from.index("/")
                 contact_from_format = contact_from[0:end_index_from]
                 if contact.jid == contact_from_format:
+                    self.toaster.show_toast('Chat - Un contacto se ha desconectado',
+                                            contact.jid + " se ha desconectado.", threaded=True)
                     contact.status = "No disponible"
         else:
             pos_contact = Contact("", "", "", self.user)
@@ -89,9 +93,13 @@ class User:
 
             if pos_contact.jid == "":
                 self.contacts.append(Contact(contact_from_format, presence["status"], resource=resource, me=self.user))
+                self.toaster.show_toast('Chat - Un contacto se ha conectado', contact_from_format + " se ha conectado.", threaded=True)
             else:
                 pos_contact.status = presence["status"]
                 pos_contact.resource = resource
+                self.toaster.show_toast('Chat - ' + contact_from_format + ' ha cambiado su estado', contact_from_format + " ha cambiado su estado a: " + presence["status"], threaded=True)
+
+
 
         self.menuPage.update_roster(self.contacts)
 
