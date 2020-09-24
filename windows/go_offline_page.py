@@ -1,9 +1,13 @@
 from tkinter import *
+import typing
 
 class GoOflinePage:
     window: Tk
+    on_go_offline: typing.Any
 
     def __init__(self, on_go_offline):
+        self.on_go_offline = on_go_offline
+
         self.window = Tk()
         self.window.geometry('150x150')
         self.window.title("Chat - ¿Cerrar sesión?")
@@ -23,13 +27,17 @@ class GoOflinePage:
         btnSi = Button(
             self.window,
             text="Si",
-            command=on_go_offline
+            command=self.on_si
         )
         btnSi.grid(column=1, row=1)
         btnSi.place(relx=0.7, rely=0.4, anchor=CENTER)
 
     def run(self):
         self.window.mainloop()
+
+    def on_si(self):
+        self.on_go_offline()
+        self.window.destroy()
 
     def on_no(self):
         self.window.destroy()
