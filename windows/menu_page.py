@@ -10,7 +10,8 @@ class MenuPage:
     on_open_chat: typing.Any
     on_open_cambiar_estado: typing.Any
 
-    def __init__(self, user, onclosewindown, on_refresh_contacts, on_delete_contact, on_add_contact_page, on_open_chat_page, on_open_cambiar_estado):
+    def __init__(self, user, onclosewindown, on_refresh_contacts, on_delete_contact, on_add_contact_page,
+                 on_open_chat_page, on_open_cambiar_estado):
         self.user = user
         self.on_del_con = on_delete_contact
         self.on_add_con = on_add_contact_page

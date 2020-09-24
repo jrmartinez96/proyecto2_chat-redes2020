@@ -5,6 +5,7 @@ import win10toast
 from windows.menu_page import MenuPage
 from windows.agregar_contacto_page import AgregarContactoPage
 from windows.cambiar_estado_page import CambiarEstadoPage
+from windows.go_offline_page import GoOflinePage
 from classes.Contact import Contact
 
 
@@ -95,6 +96,10 @@ class User:
 
     # --------------------- MENU PAGE FUNCTIONS ---------------------
     def on_close_menu_window(self):
+        page = GoOflinePage(on_go_offline=self.on_disconnect)
+        page.run()
+
+    def on_disconnect(self):
         self.disconnect()
         self.menuPage.destroy_window()
 
@@ -148,7 +153,6 @@ class User:
         page = CambiarEstadoPage(on_change=self.on_cambiar_estado)
         page.run()
 
-
     # --------------------- ADD CONTACT PAGE FUNCTIONS ---------------------
     def on_add_contact(self, contact):
         self.xmpp.send_presence(pto=contact, pfrom=self.user, ptype="subscribe")
@@ -160,6 +164,7 @@ class User:
     # --------------------- CAMBIAR ESTADO PAGE FUNCTIONS ---------------------
     def on_cambiar_estado(self, estado):
         self.xmpp.send_presence(pstatus=estado)
+
 
 
 # ------------------------------ LOGIN ------------------------------ #
