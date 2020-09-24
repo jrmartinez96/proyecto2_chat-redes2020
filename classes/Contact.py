@@ -1,6 +1,17 @@
 from windows.chat_page import ChatPage
 
 class Contact:
+    """Clase de Contacto
+
+        Attributes:
+            jid             instancia de la pantalla tkinter
+            status          estado del contacto
+            resource        Resource del contacto
+            messages        Lista de mensajes del contacto
+            chat_page       Instacia de pantalla de Chat
+            me              jid del usuario conectado
+
+    """
     jid = ""
     status = ""
     resource = ""

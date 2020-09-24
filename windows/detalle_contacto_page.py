@@ -2,6 +2,12 @@ from tkinter import *
 from classes.Contact import Contact
 
 class DetalleContactoPage:
+    """Clase de la pantalla de Detalle de Contacto
+
+        Attributes:
+            window              instancia de la pantalla tkinter
+
+    """
     window: Tk
 
     def __init__(self, contact: Contact):

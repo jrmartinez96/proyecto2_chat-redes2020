@@ -3,6 +3,14 @@ import typing
 
 
 class AgregarContactoPage:
+    """Clase de la pantalla de Agregar Contacto
+
+        Attributes:
+            window              instancia de la pantalla tkinter
+            contact_entry       Entrada de texto de contacto
+            on_add_contact      Funcion para agregar al contacto
+
+    """
     window: Tk
     contact_entry: Entry
     on_add_contact: typing.Any

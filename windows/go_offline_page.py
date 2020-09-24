@@ -2,6 +2,13 @@ from tkinter import *
 import typing
 
 class GoOflinePage:
+    """Clase de la pantalla de Cerrar Sesion
+
+        Attributes:
+            window              instancia de la pantalla tkinter
+            on_go_offline       Función para cerrar sesión
+
+    """
     window: Tk
     on_go_offline: typing.Any
 

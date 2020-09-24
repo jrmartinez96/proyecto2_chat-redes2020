@@ -10,8 +10,18 @@ from windows.detalle_contacto_page import DetalleContactoPage
 from classes.Contact import Contact
 
 
-# ------------------- VARIABLES -------------------
 class User:
+    """Clase de usuario que inicia sesión en el servidor xmpp
+
+        Attributes:
+            user                Jid del usuario
+            password            Contraseña del usuario
+            menuPage            Instancia de pantalla de Menu tkinter
+            addContactPage      Instancia de pantalla de agregar contacto
+            contacts            Listado de contactos del usuario
+            toaster             Instancia del toaster para notificaciones
+            xmpp                Instancia de la conexión al servidor xmpp
+    """
     user = ""
     password = ""
     menuPage: MenuPage

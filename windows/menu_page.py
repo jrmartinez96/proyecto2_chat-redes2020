@@ -3,6 +3,17 @@ import typing
 
 
 class MenuPage:
+    """Clase de la pantalla de Menu
+
+        Attributes:
+            window              instancia de la pantalla tkinter
+            contacts            Objeto lista de tkinter para contactos
+            on_del_con          Funcion para eliminar contacto
+            on_add_con          funcion para agregar a un contacto
+            on_open_chat        funcion para abrir la pantalla de chat
+            on_open_cambiar_estado  funcion para abrir pantalla de cambiar estado
+            on_detalle_contacto funcion para abrir pantalla de detalle de contacto
+    """
     window: Tk
     contacts: Listbox
     on_del_con: typing.Any

@@ -1,7 +1,14 @@
 from tkinter import *
-import typing
 
 class ChatPage:
+    """Clase de la pantalla de Chat
+
+        Attributes:
+            window              instancia de la pantalla tkinter
+            message_entry       Entrada de texto de mensaje
+            messages_list       Lista de mensajes
+
+    """
     window: Tk
     message_entry: Entry
     messages_list: Listbox

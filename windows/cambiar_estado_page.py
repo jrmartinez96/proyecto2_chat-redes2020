@@ -1,7 +1,16 @@
 from tkinter import *
 import typing
 
+
 class CambiarEstadoPage:
+    """Clase de la pantalla de Cambiar Estado
+
+        Attributes:
+            window              instancia de la pantalla tkinter
+            estado_entry        Entrada de texto de estado
+            on_change           Funcion para cambiar el estado del usuario
+
+    """
     window: Tk
     estado_entry: Entry
     on_change: typing.Any
